@@ -1,0 +1,11 @@
+<svg width="72" height="82" viewBox="0 0 72 82" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<ellipse cx="35.5236" cy="36.4294" rx="35.5236" ry="36.4294" fill="#0C0D12"/>
+<ellipse cx="35.5237" cy="36.4301" rx="29.603" ry="30.3578" fill="white"/>
+<!-- <ellipse cx="35.5237" cy="36.4301" rx="29.603" ry="30.3578" fill="url(#pattern0)"/> -->
+<path d="M36.9623 81.9663L21.1879 68.3053L52.7367 68.3053L36.9623 81.9663Z" fill="#0C0D12"/>
+<defs>
+<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_2305_51840" transform="matrix(0.0004329 0 0 0.000422136 0 0.29442)"/>
+</pattern>
+</defs>
+</svg>

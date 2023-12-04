@@ -1,0 +1,16 @@
+{
+  "name": "open-layer-map",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.0.4"
+  },
+  "dependencies": {
+    "ol": "latest",
+    "sass": "^1.69.5"
+  }
+}

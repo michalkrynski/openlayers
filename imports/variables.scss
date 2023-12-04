@@ -1,0 +1,120 @@
+@use 'sass:math';
+
+// Colors
+$CQURE_color-gradient: linear-gradient(86deg, #FF3D00 -1.94%, #FF005C 96.63%);
+$CQURE_color-dark: #0C0D12;
+$CQURE_color-lines: #E7E7E7;
+$CQURE_color-grey: #F5F5F5;
+$CQURE_color-khaki-normal: #B6C8C0;
+$CQURE_color-khaki-light: #E2F1EA;
+$CQURE_color-light: #ffffff;
+
+// Sizes
+$CQURE-container-width: 2000px;
+
+// Typography
+$CQURE-font: 'Factor A', Arial, sans-serif;
+$CQURE-icon: 'cqure';
+
+// Form
+$theme-color: $CQURE_color-light;
+
+@mixin CQURE_form_label {
+  font-family: $CQURE-font !important;
+  font-size: 12px !important;
+  line-height: normal;
+  color: $theme-color !important;
+  margin-bottom: 10px;
+
+  @include mq-desktop() {
+    font-size: vw(14px) !important;
+    margin-bottom: vw(10px);
+  }
+
+  @include mq-widescreen() {
+    font-size: 14px !important;
+    margin-bottom: 10px;
+  }
+}
+
+@mixin CQURE_form_input  {
+  font-family: $CQURE-font !important;
+  font-size: 18px !important;
+  line-height: 120% !important;
+  color: $theme-color !important;
+  padding: 0 !important;
+  height: 50px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none !important;
+  border-radius: none !important;
+  border-bottom: 1px solid $CQURE_color-lines !important;
+  background-color: transparent !important;
+  outline: none !important;
+
+  @include mq-desktop() {
+    font-size: vw(26px) !important;
+  }
+
+  @include mq-widescreen() {
+    font-size: 26px !important;
+  }
+}
+
+@mixin CQURE_form_button {
+  font-family: $CQURE-font !important;
+  font-size: 18px !important;
+  line-height: 120% !important;
+  color: $CQURE_color-light !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  height: 50px !important;
+  padding: 0 15px !important;
+  border-radius: 50px !important;
+  border: none !important;
+  background: $CQURE_color-gradient;
+
+  @include mq-desktop() {
+    font-size: vw(22px) !important;
+    padding: 0 vw(30px) !important;
+    height: vw(80px) !important;
+    border-radius: vw(50px) !important;
+  }
+
+  @include mq-widescreen() {
+    font-size: 22px !important;
+    padding: 0 30px !important;
+    height: 80px !important;
+  }
+}
+
+// RWD
+$screen-md: 1024px;
+$screen-lg: 2000px;
+
+@mixin mq-mobile {
+  @media (max-width: ($screen-md - 1)) {
+    @content;
+  }
+}
+
+@mixin mq-desktop {
+  @media (min-width: $screen-md) and (max-width: ($screen-lg - 1)) {
+    @content;
+  }
+}
+
+@mixin mq-widescreen {
+  @media (min-width: $screen-lg) {
+    @content;
+  }
+}
+
+// Utils
+@function vw($pixels) {
+  @return math.div($pixels, $CQURE-container-width) * 100 * 1vw;
+}

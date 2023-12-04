@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.1.0/ol.css" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/ol@v7.1.0/dist/ol.js"></script> -->
+  <title>Using OpenLayers with Vite</title>
+  <style>
+    .map {
+      width: 100%;
+      height: 400px;
+    }
+
+    .svg-layer path:hover {
+      opacity: 0.4;
+      /* fill: url(#grad1); */
+    }
+
+    .svg-layer g {
+      /* display: none; */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map">
+    <div id="popup" class="popup">
+      <div id="popup-content">
+        <h5 class="popup__title">The Wind of Change: Strategic view and many more things</h5>
+        <div class="popup__content">
+          <p class="popup__paragraph">March 23, 2023</p>
+          <p class="popup__paragraph">7 PM CET / 2 PM ET / 11 AM PT</p>
+          <p class="popup__paragraph">Warsaw</p>
+          <p class="popup__paragraph">Paula Januszkiewicz</p>
+        </div>
+        <div class="popup__cta-wrapper">
+          <a href="" class="popup__cta">
+            <i class="popup__cta-icon" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var jsonData = [
+      {
+        "name": "Protecting Personal Data in Light of New Regulations: GDPR and Its Impact on Businesses",
+        "speaker": "Jan Kowalski",
+        "location": "Gdańsk",
+        "date": "2023-12-15 11:12:00",
+        "slug": "https:\/\/cqure2d.wpenginepowered.com\/events\/protecting-personal-data-in-light-of-new-regulations-gdpr-and-its-impact-on-businesses\/",
+        "position": {
+          "lat": "54.361522073431566",
+          "lng": "18.64619658916049"
+        },
+        "marker": "https:\/\/cqure2d.wpenginepowered.com\/wp-content\/uploads\/2023\/11\/marker_event-150x150.webp"
+      },
+      {
+        "name": "The Wind of Change:Strategic View on Elevating Cybersecurity Awareness and Successful Organization Protection",
+        "speaker": "Jan Kowalski",
+        "location": "Warszawa",
+        "date": "2023-11-29 11:12:00",
+        "slug": "https:\/\/cqure2d.wpenginepowered.com\/events\/the-wind-of-changestrategic-view-on-elevating-cybersecurity-awareness-and-successful-organization-protection\/",
+        "position": {
+          "lat": "52.24350950179399",
+          "lng": "21.02899216774921"
+        },
+        "marker": "https:\/\/cqure2d.wpenginepowered.com\/wp-content\/uploads\/2023\/11\/marker_event-150x150.webp"
+      }];
+  </script>
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>
