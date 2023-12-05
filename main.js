@@ -14,45 +14,12 @@ import { Point } from 'ol/geom';
 import Overlay from 'ol/Overlay.js';
 import {composeCssTransform} from 'ol/transform.js';
 import {OGCMapTile, Vector as VectorSource} from 'ol/source.js';
-import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
-
-
-const iconStyle = new Style({
-  image: new Icon({
-    anchor: [36, 82],
-    anchorXUnits: 'pixels',
-    anchorYUnits: 'pixels',
-    src: 'data/cqure-marker.svg',
-  }),
-});
-
-const markers = [];
-
-jsonData.forEach(item => {
-  const marker = createMarkerLayer(item.position, iconStyle)
-  markers.push(marker);
-});
-
-function createMarkerLayer(coordinates, style, zIndex = 10) {
-  const feature = new Feature(new Point([coordinates.lng, coordinates.lat]));
-
-  const source = new VectorSource({
-    features: [feature],
-  });
-
-  const vectorLayer = new VectorLayer({
-    source: source,
-    style,
-  });
-
-  vectorLayer.setZIndex(zIndex);
-
-  return vectorLayer;
-}
+import {Layer, Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
+import { fromLonLat } from 'ol/proj';
 
 const svgContainer = document.createElement('div');
 const xhr = new XMLHttpRequest();
-xhr.open('GET', './data/BlankMap-World.svg');
+xhr.open('GET', './data/world.svg');
 xhr.addEventListener('load', function () {
   const svg = xhr.responseXML.documentElement;
   svgContainer.ownerDocument.importNode(svg);
@@ -86,7 +53,42 @@ const mapLayer = new TileLayer({
     svgContainer.style.opacity = this.getOpacity();
     return svgContainer;
   },
-})
+  zIndex: 10,
+});
+
+const markers = [];
+
+jsonData.forEach(item => {
+  const iconStyle = new Style({
+    image: new Icon({
+      // anchor: [75, 95],
+      // anchorXUnits: 'pixels',
+      // anchorYUnits: 'pixels',
+      src: item.marker,
+      scale: 0.5
+    }),
+  });
+
+  const marker = createMarkerLayer(item.position, iconStyle)
+  markers.push(marker);
+});
+
+function createMarkerLayer(coordinates, style, zIndex = 10) {
+  const feature = new Feature({ geometry: new Point(fromLonLat([coordinates.lng, coordinates.lat], 'EPSG:4326')) });
+
+  const source = new VectorSource({
+    features: [feature],
+  });
+
+  const vectorLayer = new VectorLayer({
+    source: source,
+    style,
+  });
+
+  vectorLayer.setZIndex(100)
+
+  return vectorLayer;
+}
 
 const element = document.getElementById('popup');
 
@@ -99,6 +101,8 @@ const popup = new Overlay({
 const map = new Map({
   target: 'map',
   layers: [
+    // new TileLayer({ source: new OSM() }),
+    mapLayer,
     ...markers
   ],
   overlays: [popup],
@@ -107,10 +111,12 @@ const map = new Map({
     extent: [-180, -90, 180, 90],
     projection: 'EPSG:4326',
     zoom: 2,
+    maxZoom: 6,
+    minZoom: 2,
   }),
 });
 
-mapLayer.setMap(map);
+// mapLayer.setMap(map);
 
 // display popup on click
 // map.on('singleclick', function (evt) {
